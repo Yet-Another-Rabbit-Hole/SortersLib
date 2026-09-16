@@ -1,10 +1,13 @@
-package net.YaRh.SortersLib;
+package net.YaRh.SortersLib.algorithms;
 
 import net.YaRh.CheapLog.logging.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @since 1.0.0
+ */
 public class MergeSort implements SortingAlgorithm {
 	public static final Logger LOGGER = new Logger("MergeSort");
 	
@@ -12,13 +15,7 @@ public class MergeSort implements SortingAlgorithm {
 		LOGGER.debug.println("Sorting list: %s", list);
 		
 		if (list.size() <= 1) return;
-		
-		if (list.size() == 2) {
-			int a = list.get(0);
-			if (a <= list.get(1)) return;
-			else list.add(0, list.remove(1));
-			return;
-		}
+		if (resolveDoubleList(list)) return;
 		
 		int mid = list.size() / 2;
 		List<Integer> list1 = new ArrayList<>(list.subList(0, mid));

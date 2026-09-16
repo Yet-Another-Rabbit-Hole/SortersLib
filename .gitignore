@@ -41,3 +41,6 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### Scrapped ideas ###
+src/main/java/net/YaRh/SortersLib/Sortable.java

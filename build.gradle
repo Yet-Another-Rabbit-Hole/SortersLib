@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'net.YaRh'
-version = '1.0.0'
+version = '1.1.0'
 
 repositories {
     mavenCentral()
@@ -56,7 +56,7 @@ dependencies {
 
     implementation 'net.YaRh:cheaplog:3.0.0'
     implementation 'net.YaRh:convconf:1.3.0'
-    implementation 'net.YaRh:visualsort:1.0.0:all'
+    implementation 'net.YaRh:visualsort:1.1.0:all'
 }
 
 test {

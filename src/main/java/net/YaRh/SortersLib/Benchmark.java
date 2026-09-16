@@ -1,20 +1,24 @@
 package net.YaRh.SortersLib;
 
 import net.YaRh.CheapLog.logging.Logger;
-import net.YaRh.ConvConf.Attribute;
 import net.YaRh.ConvConf.Switch;
+import net.YaRh.SortersLib.algorithms.SortingAlgorithm;
+import net.YaRh.VisualSort.VisualList;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import static net.YaRh.SortersLib.Config.benchmarkListSize;
+import static net.YaRh.SortersLib.Config.benchmarkRepeat;
+
+/**
+ * @since 1.0.0
+ */
 public class Benchmark {
 	private static final Logger LOGGER = new Logger("Benchmark");
 	
 	public static final Switch visual = new Switch(false);
-	
-	public static final Attribute<Integer> benchmarkListSize = new Attribute<>(40);
-	public static final Attribute<Integer> benchmarkRepeat = new Attribute<>(5);
 	
 	private static SortingAlgorithm algorithm = null;
 	
@@ -53,7 +57,11 @@ public class Benchmark {
 		runs++;
 		
 		List<Integer> unordered = randomBenchmarkList();
-		List<Integer> test = new ArrayList<>(unordered);
+		
+		List<Integer> test;
+		if (visual.get()) test = new VisualList(unordered);
+		else test = new ArrayList<>(unordered);
+		
 		List<Integer> sorted = new ArrayList<>(unordered);
 		Collections.sort(sorted);
 		
@@ -90,15 +98,25 @@ public class Benchmark {
 	}
 	
 	private static void logFailedRun(List<Integer> unordered, List<Integer> sorted, List<Integer> test) {
-		LOGGER.info.println("Given:    %s", unordered);
-		LOGGER.info.println("Result:   %s", test);
-		LOGGER.info.println("Expected: %s", sorted);
+		LOGGER.error.println("Given:    %s", unordered);
+		LOGGER.error.println("Result:   %s", test);
+		LOGGER.error.println("Expected: %s", sorted);
 	}
 	
 	public static List<Integer> randomBenchmarkList() {
 		List<Integer> list = new ArrayList<>();
 		
 		for (Integer i = benchmarkListSize.get(); i > 0; i--) {
+			list.add((int) (Math.random() * 100));
+		}
+		
+		return list;
+	}
+	
+	public static List<Integer> randomList(int size) {
+		List<Integer> list = new ArrayList<>();
+		
+		for (int i = size; i > 0; i--) {
 			list.add((int) (Math.random() * 100));
 		}
 		

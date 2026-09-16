@@ -1,8 +1,11 @@
 import net.YaRh.SortersLib.Benchmark;
-import net.YaRh.SortersLib.BubbleSort;
-import net.YaRh.SortersLib.MergeSort;
-import net.YaRh.SortersLib.SortingAlgorithm;
+import net.YaRh.SortersLib.Config;
+import net.YaRh.SortersLib.algorithms.*;
 import net.YaRh.VisualSort.VisualList;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
 
 import static net.YaRh.CheapLog.Config.*;
 import static net.YaRh.VisualSort.Config.stepByStep;
@@ -20,17 +23,20 @@ public class Main {
 		VisualList.LOGGER.disable();
 		
 		stepByStep.disable();
-		stepDelay.set(0.5D);
+		stepDelay.set(2D);
 		
-		Benchmark.benchmarkRepeat.set(1);
+		Config.benchmarkRepeat.set(2);
+		//Config.benchmarkListSize.set(5);
 		
-		Benchmark.setAlgorithm(new MergeSort());
+		Benchmark.setAlgorithm(new QuickSort());
 		Benchmark.benchmark();
 		
-		SortingAlgorithm a = new BubbleSort();
+		/*
+		SortingAlgorithm a = new CombSort();
 		VisualList v = new VisualList();
 		v.addAll(Benchmark.randomBenchmarkList());
 		a.sort(v);
 		v.isOrdered();
+		 */
 	}
 }

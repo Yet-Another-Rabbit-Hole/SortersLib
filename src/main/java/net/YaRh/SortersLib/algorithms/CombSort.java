@@ -1,9 +1,13 @@
-package net.YaRh.SortersLib;
+package net.YaRh.SortersLib.algorithms;
 
 import net.YaRh.CheapLog.logging.Logger;
+import net.YaRh.VisualSort.VisualList;
 
 import java.util.List;
 
+/**
+ * @since 1.0.0
+ */
 public class CombSort implements SortingAlgorithm {
 	public static final Logger LOGGER = new Logger("CombSort");
 	
@@ -11,12 +15,7 @@ public class CombSort implements SortingAlgorithm {
 		LOGGER.debug.println("Sorting list: %s", list);
 		
 		if (list.size() <= 1) return;
-		if (list.size() == 2) {
-			int i = list.remove(0);
-			if (list.get(0) > i) list.add(0, i);
-			else list.add(i);
-			return;
-		}
+		if (resolveDoubleList(list)) return;
 		
 		boolean touched;
 		int spacing = list.size() - 1;
@@ -24,11 +23,8 @@ public class CombSort implements SortingAlgorithm {
 			touched = false;
 			
 			for (int i = 0; i + spacing < list.size(); i++) {
-				int i1 = list.get(i);
-				int i2 = list.get(i + spacing);
-				if (i1 > i2) {
-					list.set(i, i2);
-					list.set(i + spacing, i1);
+				if (list.get(i) > list.get(i + spacing)) {
+					VisualList.swap(list, i, i + spacing);
 					touched = true;
 				}
 			}
