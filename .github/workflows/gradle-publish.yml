@@ -38,6 +38,12 @@ jobs:
 
       - name: Build Jar
         run: ./gradlew build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_ACTOR: ${{ github.actor }}
+
+      - name: Build shadowJar
+        run: ./gradlew shadowJar
 
       - name: Publish to GitHub Packages
         run: ./gradlew publish
