@@ -6,12 +6,12 @@ import net.YaRh.VisualSort.VisualList;
 import java.util.List;
 
 /**
- * Walks through the list and compares two values, swapping them if necessary
+ * Like {@link BubbleSort} but works back and forth
  *
- * @since 1.0.0
+ * @since 1.2.0
  */
-public class BubbleSort implements SortingAlgorithm {
-	public static final Logger LOGGER = new Logger("BubbleSort");
+public class ShakerSort implements SortingAlgorithm {
+	public static final Logger LOGGER = new Logger("ShakerSort");
 	
 	public void sort(List<Integer> list) {
 		LOGGER.debug.println("Sorting list: %s", list);
@@ -26,6 +26,13 @@ public class BubbleSort implements SortingAlgorithm {
 			for (int i = 0; i < list.size() - 1; i++) {
 				if (list.get(i) > list.get(i+1)) {
 					VisualList.swap(list, i, i+1);
+					touched = true;
+				}
+			}
+			
+			for (int i = list.size() - 1; i > 0; i--) {
+				if (list.get(i) < list.get(i-1)) {
+					VisualList.swap(list, i, i-1);
 					touched = true;
 				}
 			}

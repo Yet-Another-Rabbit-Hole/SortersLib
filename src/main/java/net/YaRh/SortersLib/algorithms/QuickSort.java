@@ -69,10 +69,6 @@ public class QuickSort implements SortingAlgorithm {
 		sort(greater);
 		sort(smaller);
 		
-		LOGGER.debug.println("smaller: %s", smaller);
-		LOGGER.debug.println("equal: %s", equal);
-		LOGGER.debug.println("greater: %s", greater);
-		
 		list.addAll(smaller);
 		list.addAll(equal);
 		list.addAll(greater);

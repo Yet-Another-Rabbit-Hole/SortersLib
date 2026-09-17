@@ -26,9 +26,9 @@ public class Main {
 		stepDelay.set(2D);
 		
 		Config.benchmarkRepeat.set(2);
-		//Config.benchmarkListSize.set(5);
+		Config.benchmarkListSize.set(5);
 		
-		Benchmark.setAlgorithm(new QuickSort());
+		Benchmark.setAlgorithm(new ShakerSort());
 		Benchmark.benchmark();
 		
 		/*
