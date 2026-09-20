@@ -1,7 +1,6 @@
-package net.YaRh.SortersLib.algorithms;
+package net.YaRh.SortersLib.algorithms.sort;
 
 import net.YaRh.CheapLog.logging.Logger;
-import net.YaRh.VisualSort.VisualList;
 
 import java.util.List;
 
@@ -10,7 +9,7 @@ import java.util.List;
  *
  * @since 1.2.0
  */
-public class StalinSort implements SortingAlgorithm {
+public class StalinSort implements SortAlgorithm {
 	public static final Logger LOGGER = new Logger("StalinSort");
 	
 	public void sort(List<Integer> list) {

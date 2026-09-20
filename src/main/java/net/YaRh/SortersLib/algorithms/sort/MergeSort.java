@@ -1,4 +1,4 @@
-package net.YaRh.SortersLib.algorithms;
+package net.YaRh.SortersLib.algorithms.sort;
 
 import net.YaRh.CheapLog.logging.Logger;
 
@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * @since 1.0.0
  */
-public class MergeSort implements SortingAlgorithm {
+public class MergeSort implements SortAlgorithm {
 	public static final Logger LOGGER = new Logger("MergeSort");
 	
 	public void sort(List<Integer> list) {

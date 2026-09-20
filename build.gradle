@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'net.YaRh'
-version = '1.2.1'
+version = '2.0.0'
 
 repositories {
     mavenCentral()
@@ -54,8 +54,8 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-    implementation 'net.YaRh:cheaplog:3.0.0'
-    implementation 'net.YaRh:convconf:1.3.0'
+    implementation 'net.YaRh:cheaplog:3.3.0'
+    implementation 'net.YaRh:convconf:1.7.0'
     implementation 'net.YaRh:visualsort:1.1.0:all'
 }
 
@@ -90,7 +90,7 @@ shadowJar {
     archiveClassifier = 'all'
 }
 
-tasks.register("update") {
+tasks.register("updateLocal") {
     dependsOn testClasses
     dependsOn jar
     dependsOn shadowJar

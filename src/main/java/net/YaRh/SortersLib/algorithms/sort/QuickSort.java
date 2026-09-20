@@ -1,7 +1,6 @@
-package net.YaRh.SortersLib.algorithms;
+package net.YaRh.SortersLib.algorithms.sort;
 
 import net.YaRh.CheapLog.logging.Logger;
-import net.YaRh.VisualSort.VisualList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +9,7 @@ import java.util.function.Function;
 /**
  * @since 1.1.0
  */
-public class QuickSort implements SortingAlgorithm {
+public class QuickSort implements SortAlgorithm {
 	public static final Logger LOGGER = new Logger("QuickSort");
 	
 	/**

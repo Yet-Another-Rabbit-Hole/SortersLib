@@ -1,4 +1,4 @@
-package net.YaRh.SortersLib.algorithms;
+package net.YaRh.SortersLib.algorithms.sort;
 
 import net.YaRh.VisualSort.VisualList;
 
@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * @since 1.0.0
  */
-public interface SortingAlgorithm {
+public interface SortAlgorithm {
 	void sort(List<Integer> list);
 	
 	default boolean resolveDoubleList(List<Integer> list) {

@@ -1,11 +1,10 @@
-import net.YaRh.SortersLib.Benchmark;
+import net.YaRh.SortersLib.algorithms.search.BinarySearch;
+import net.YaRh.SortersLib.algorithms.search.LinearSearch;
+import net.YaRh.SortersLib.benchmark.SearchingBenchmark;
+import net.YaRh.SortersLib.benchmark.SortingBenchmark;
 import net.YaRh.SortersLib.Config;
-import net.YaRh.SortersLib.algorithms.*;
+import net.YaRh.SortersLib.algorithms.sort.ShakerSort;
 import net.YaRh.VisualSort.VisualList;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Stream;
 
 import static net.YaRh.CheapLog.Config.*;
 import static net.YaRh.VisualSort.Config.stepByStep;
@@ -23,16 +22,20 @@ public class Main {
 		VisualList.LOGGER.disable();
 		
 		stepByStep.disable();
-		stepDelay.set(2D);
+		//stepDelay.set(2D);
 		
-		Config.benchmarkRepeat.set(2);
-		Config.benchmarkListSize.set(5);
+		//Config.benchmarkRepeat.set(15);
+		//Config.benchmarkSetSize.set(15);
 		
-		Benchmark.setAlgorithm(new ShakerSort());
-		Benchmark.benchmark();
+		//SortingBenchmark.setAlgorithm(new ShakerSort());
+		//SortingBenchmark.benchmark();
+		
+		BinarySearch.LOGGER.logging.enable();
+		SearchingBenchmark.setAlgorithm(new BinarySearch());
+		SearchingBenchmark.benchmark();
 		
 		/*
-		SortingAlgorithm a = new CombSort();
+		SortAlgorithm a = new CombSort();
 		VisualList v = new VisualList();
 		v.addAll(Benchmark.randomBenchmarkList());
 		a.sort(v);

@@ -7,7 +7,7 @@ import net.YaRh.ConvConf.Attribute;
  */
 public class Config {
 	
-	public static final Attribute<Integer> benchmarkListSize = new Attribute<>(40);
+	public static final Attribute<Integer> benchmarkSetSize = new Attribute<>(40);
 	public static final Attribute<Integer> benchmarkRepeat = new Attribute<>(5);
 	
 }
