@@ -18,6 +18,7 @@ public class ShakerSort implements SortAlgorithm {
 		
 		if (list.size() <= 1) return;
 		if (resolveDoubleList(list)) return;
+		if (resolveTrippleList(list)) return;
 		
 		boolean touched;
 		do {

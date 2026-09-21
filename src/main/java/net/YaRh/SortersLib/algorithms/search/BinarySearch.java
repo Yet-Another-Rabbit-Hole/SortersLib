@@ -1,6 +1,7 @@
 package net.YaRh.SortersLib.algorithms.search;
 
 import net.YaRh.CheapLog.logging.Logger;
+import net.YaRh.ConvConf.Attribute;
 import net.YaRh.SortersLib.algorithms.sort.CombSort;
 import net.YaRh.SortersLib.algorithms.sort.SortAlgorithm;
 
@@ -10,13 +11,15 @@ import java.util.Optional;
 public class BinarySearch implements SearchAlgorithm {
 	public static final Logger LOGGER = new Logger("BinarySearch");
 	
+	public static final Attribute<SortAlgorithm> sorter = new Attribute<>(new CombSort());
+	
 	static {
 		LOGGER.disable();
 	}
 	
 	@Override
 	public void setup(List<Integer> list) {
-		SortAlgorithm sorter = new CombSort();
+		SortAlgorithm sorter = BinarySearch.sorter.get();
 		sorter.sort(list);
 	}
 	

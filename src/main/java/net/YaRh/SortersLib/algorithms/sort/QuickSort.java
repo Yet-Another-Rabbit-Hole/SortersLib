@@ -48,6 +48,7 @@ public class QuickSort implements SortAlgorithm {
 		
 		if (list.size() <= 1) return;
 		if (resolveDoubleList(list)) return;
+		if (resolveTrippleList(list)) return;
 		
 		List<Integer> smaller = new ArrayList<>();
 		List<Integer> equal = new ArrayList<>();

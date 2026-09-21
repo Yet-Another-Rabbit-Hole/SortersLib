@@ -16,7 +16,6 @@ public class StalinSort implements SortAlgorithm {
 		LOGGER.debug.println("Sorting list: %s", list);
 		
 		if (list.size() <= 1) return;
-		if (resolveDoubleList(list)) return;
 		
 		int last = list.get(0);
 		int i = 1;

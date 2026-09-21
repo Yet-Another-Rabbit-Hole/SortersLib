@@ -16,6 +16,7 @@ public class CombSort implements SortAlgorithm {
 		
 		if (list.size() <= 1) return;
 		if (resolveDoubleList(list)) return;
+		if (resolveTrippleList(list)) return;
 		
 		boolean touched;
 		int spacing = list.size() - 1;

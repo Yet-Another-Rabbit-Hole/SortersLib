@@ -16,6 +16,7 @@ public class MergeSort implements SortAlgorithm {
 		
 		if (list.size() <= 1) return;
 		if (resolveDoubleList(list)) return;
+		if (resolveTrippleList(list)) return;
 		
 		int mid = list.size() / 2;
 		List<Integer> list1 = new ArrayList<>(list.subList(0, mid));

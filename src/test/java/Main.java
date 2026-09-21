@@ -1,9 +1,9 @@
 import net.YaRh.SortersLib.algorithms.search.BinarySearch;
 import net.YaRh.SortersLib.algorithms.search.LinearSearch;
+import net.YaRh.SortersLib.algorithms.sort.*;
 import net.YaRh.SortersLib.benchmark.SearchingBenchmark;
 import net.YaRh.SortersLib.benchmark.SortingBenchmark;
 import net.YaRh.SortersLib.Config;
-import net.YaRh.SortersLib.algorithms.sort.ShakerSort;
 import net.YaRh.VisualSort.VisualList;
 
 import static net.YaRh.CheapLog.Config.*;
@@ -13,7 +13,6 @@ import static net.YaRh.VisualSort.Config.stepDelay;
 public class Main {
 	public static void main(String[] args) {
 		debugging.enable();
-		thread.enable();
 		logging.enable();
 		//location.enable();
 		errors.enable();
@@ -21,18 +20,18 @@ public class Main {
 		
 		VisualList.LOGGER.disable();
 		
-		stepByStep.disable();
+		stepByStep.enable();
 		//stepDelay.set(2D);
 		
-		//Config.benchmarkRepeat.set(15);
-		//Config.benchmarkSetSize.set(15);
+		Config.benchmarkRepeat.set(2);
+		Config.benchmarkSetSize.set(6);
 		
-		//SortingBenchmark.setAlgorithm(new ShakerSort());
-		//SortingBenchmark.benchmark();
+		SortingBenchmark.LOGGER.debugging.enable();
+		SortingBenchmark.setAlgorithm(new StoogeSort());
+		SortingBenchmark.benchmark();
 		
-		BinarySearch.LOGGER.logging.enable();
-		SearchingBenchmark.setAlgorithm(new BinarySearch());
-		SearchingBenchmark.benchmark();
+		//SearchingBenchmark.setAlgorithm(new BinarySearch());
+		//SearchingBenchmark.benchmark();
 		
 		/*
 		SortAlgorithm a = new CombSort();

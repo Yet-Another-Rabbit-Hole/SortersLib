@@ -16,7 +16,11 @@ import static net.YaRh.SortersLib.Config.benchmarkRepeat;
  * @since 1.0.0
  */
 public class SortingBenchmark {
-	private static final Logger LOGGER = new Logger("SortingBenchmark");
+	public static final Logger LOGGER = new Logger("SortingBenchmark");
+	
+	static {
+		LOGGER.disable();
+	}
 	
 	public static final Switch visual = new Switch(false);
 	
@@ -70,17 +74,26 @@ public class SortingBenchmark {
 		long end = System.nanoTime();
 		
 		long time = end - start;
-		boolean isSorted = test.equals(sorted);
 		
-		logRunResult(time, isSorted);
-		if (!isSorted) logFailedRun(unordered, sorted, test);
+		assertRun(test, unordered, sorted, time);
 		
 		if (medianTime == -1L) medianTime = time;
 		else {
 			medianTime += time;
 			medianTime /= runs;
 		}
+	}
+	
+	private static void assertRun(List<Integer> test, List<Integer> unordered, List<Integer> sorted, long time) {
+		boolean isSorted = test.equals(sorted);
+		boolean isMbySorted = isSorted(test);
+		
+		if (isSorted) logSuccessfulResult(time);
+		else if (isMbySorted) logSmwhtSuccRun(sorted.size(), test);
+		else logFailedRun(unordered, sorted, test);
+		
 		if (isSorted) success++;
+		else if (isMbySorted) success += .5D;
 	}
 	
 	private static void logResult() {
@@ -91,20 +104,35 @@ public class SortingBenchmark {
 		LOGGER.info.println("With %d ints per list", benchmarkSetSize.get());
 	}
 	
-	private static void logRunResult(long duration, boolean correct) {
+	private static void logSuccessfulResult(long duration) {
 		long timeInMs = duration / 1_000_000L;
-		if (correct) LOGGER.info.println("Finished run %d: time: %sms", runs, timeInMs);
-		else LOGGER.error.println("Finished run %d: sorted incorrectly", runs);
+		LOGGER.log.println("Successfully sorted");
+		LOGGER.info.println("Finished run %d: time: %sms", runs, timeInMs);
+	}
+	
+	private static void logSmwhtSuccRun(int expectedSize, List<Integer> result) {
+		LOGGER.error.println("Not sorted valid but returned ordered list");
+		LOGGER.debug.println("Result: %s", result);
+		LOGGER.info.println("The expected size was %s, the result had a size of %s", expectedSize, result.size());
 	}
 	
 	private static void logFailedRun(List<Integer> unordered, List<Integer> sorted, List<Integer> test) {
-		LOGGER.error.println("Given:    %s", unordered);
-		LOGGER.error.println("Result:   %s", test);
-		LOGGER.error.println("Expected: %s", sorted);
+		LOGGER.error.println("Failed to sort correctly");
+		LOGGER.debug.println("Given:    %s", unordered);
+		LOGGER.debug.println("Result:   %s", test);
+		LOGGER.debug.println("Expected: %s", sorted);
 	}
 	
 	public static List<Integer> randomBenchmarkList() {
 		return randomList(benchmarkSetSize.get());
+	}
+	
+	public static boolean isSorted(List<Integer> list) {
+		for (int i = 1; i < list.size(); i++)
+			if (list.get(i-1) > list.get(i))
+				return false;
+		
+		return true;
 	}
 	
 	public static List<Integer> randomList(int size) {
