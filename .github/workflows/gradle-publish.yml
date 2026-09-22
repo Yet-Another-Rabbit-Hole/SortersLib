@@ -11,6 +11,11 @@
 name: Release
 
 on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag'
+        required: true
   push:
     tags:
       - 'v*'
