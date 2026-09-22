@@ -63,6 +63,7 @@ jobs:
         run: ./gradlew shadowJar
 
       - name: Publish to GitHub Packages
+        continue-on-error: true
         run: ./gradlew publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
