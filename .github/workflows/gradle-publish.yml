@@ -29,7 +29,10 @@ jobs:
       packages: write
 
     steps:
-      - uses: actions/checkout@v6
+      - name: Checkout release
+        uses: actions/checkout@v6
+        with:
+          ref: ${{ inputs.tag }}
 
       - uses: actions/setup-java@v4
         with:
